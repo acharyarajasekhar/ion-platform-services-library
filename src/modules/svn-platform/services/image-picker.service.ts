@@ -28,21 +28,21 @@ export class ImagePickerService {
                 else {
                     this.imgPicker.getPictures(this.options).then(results => {
                         if (results && results.length === 1) {
-                            let budyIndHandle = this.busyInd.show();
+                            this.busyInd.show();
                             this.file.resolveLocalFilesystemUrl(results[0]).then((fileEntry: any) => {
                                 fileEntry.file(file => {
                                     var reader = new FileReader();
                                     reader.onloadend = (evt: any) => {
-                                        this.busyInd.hide(budyIndHandle);
+                                        this.busyInd.hide();
                                         resolve(evt.target.result);
                                     };
                                     reader.readAsDataURL(file);
-                                }, err => { this.busyInd.hide(budyIndHandle); reject("Error while reading image file: " + JSON.stringify(err)); })
-                            }).catch(err => { this.busyInd.hide(budyIndHandle); reject("Error while resolving image file url: " + JSON.stringify(err)) })
+                                }, err => { this.busyInd.hide(); reject("Error while reading image file: " + JSON.stringify(err)); })
+                            }).catch(err => { this.busyInd.hide(); reject("Error while resolving image file url: " + JSON.stringify(err)) })
                         }
                     }).catch(err => reject("Error while getting images: " + JSON.stringify(err)));
                 }
-            }, err => console.log("Error while checking imagepicker permission: " + JSON.stringify(err)));
+            }).catch(err => reject("Error while checking imagepicker permission: " + JSON.stringify(err)));
         });
     }
 
@@ -53,7 +53,7 @@ export class ImagePickerService {
                 if (!result) this.imgPicker.requestReadPermission();
                 else {
                     this.imgPicker.getPictures(this.options).then(results => {
-                        let budyIndHandle = this.busyInd.show();
+                        this.busyInd.show();
                         let l = results.length;
                         let temp = [];
                         for (let i = 0; i < l; i++) {
@@ -68,8 +68,8 @@ export class ImagePickerService {
                                         }
                                     };
                                     reader.readAsDataURL(file);
-                                }, err => { this.busyInd.hide(budyIndHandle); reject("Error while reading image file: " + JSON.stringify(err)); })
-                            }).catch(err => { this.busyInd.hide(budyIndHandle); reject("Error while resolving image file url: " + JSON.stringify(err)) })
+                                }, err => { this.busyInd.hide(); reject("Error while reading image file: " + JSON.stringify(err)); })
+                            }).catch(err => { this.busyInd.hide(); reject("Error while resolving image file url: " + JSON.stringify(err)) })
                         }
                     }).catch(err => reject("Error while getting images: " + JSON.stringify(err)));
                 }

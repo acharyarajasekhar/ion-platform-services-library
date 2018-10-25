@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SvnPlatformServicesModule } from '../modules';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SvnPlatformServicesModule } from '../modules';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    SvnPlatformServicesModule
+    SvnPlatformServicesModule,
+    NgxSpinnerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -26,7 +28,7 @@ import { SvnPlatformServicesModule } from '../modules';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }

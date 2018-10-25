@@ -7,7 +7,17 @@
 </ion-header>
 
 <ion-content padding>
-  Hello
+  Just wanted to add a little bit more on this.
+
+  With the new angular 2.0.0 final release (sept 14, 2016), if you use custom html tags then it will report that
+  Template parse errors. A custom tag is a tag you use in your HTML that's not one of these tags.
+
+  It looks like the line schemas: [ CUSTOM_ELEMENTS_SCHEMA ] need to be added to each component where you are using
+  custom HTML tags.
+
+  EDIT: The schemas declaration needs to be in a @NgModule decorator. The example below shows a custom module with a
+  custom component CustomComponent which allows any html tag in the html template for that one component.
+  
 </ion-content>
 
 <ion-footer>

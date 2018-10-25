@@ -1,34 +1,23 @@
-import { LoadingController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { BackButtonEventHandler } from '../handlers/back-button.handler';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class BusyIndicatorService {
 
-  safeSvg: any;
   backButtonHandle: any;
+  public spinnerObservable = new Subject<boolean>();
 
-  constructor(
-    private loadingCtrl: LoadingController,
-    private sanitizer: DomSanitizer,
-    private backButtonHandler: BackButtonEventHandler) {
-      this.safeSvg = "Please wait...";
-  }
+  constructor(private backButtonHandler: BackButtonEventHandler) { }
 
   show(): any {
     this.backButtonHandle = this.backButtonHandler.disableEvent();
-    let indicator = this.loadingCtrl.create({
-      spinner: 'hide',
-      content: this.safeSvg,
-    });
-    indicator.present();
-    return indicator
+    this.spinnerObservable.next(true);
   }
 
-  hide(indicator) {
+  hide() {
     this.backButtonHandle();
-    if (indicator) indicator.dismiss();
+    this.spinnerObservable.next(false);
   }
 
 }
