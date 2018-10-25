@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { BusyIndicatorService } from '../../modules';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'page-home',
