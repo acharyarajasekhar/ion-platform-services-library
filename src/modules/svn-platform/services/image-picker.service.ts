@@ -65,7 +65,7 @@ export class ImagePickerService {
         });
     }
 
-    private resolveChain(urls: []): Promise<any> {
+    private resolveChain(urls: any): Promise<any> {
         return urls.reduce((previous: any, current: string, index: number, arr: any) => {
             return previous.then(accumulator => {
                 this.getDataUrl(current).then(currentDataURL => [...accumulator, currentDataURL]).catch(err => console.log(err))
