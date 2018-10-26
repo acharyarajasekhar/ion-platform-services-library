@@ -1,6 +1,6 @@
 {
   "name": "@sri-vaikhanasa-network/ion-platform-services-library",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Acharya Raja Sekhar",
   "homepage": "https://github.com/acharyarajasekhar/ion-platform-services-library",
   "private": false,
@@ -13,7 +13,7 @@
     "rebuild:lib": "rd /s /q dist && ng-packagr",
     "publish": "npm publish dist --access public"
   },
-  "pependencies": {
+  "dependencies": {
     "@angular/animations": "5.2.11",
     "@angular/common": "5.2.11",
     "@angular/compiler": "5.2.11",
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.0",
-    "ng-packagr": "^3.0.0",
+    "ng-packagr": "^2.4.5",
     "typescript": "^2.9.2"
   },
   "description": "Ionic Platform Services Library - Built to support Sri Vaikhanasa Network Ionic App..."
