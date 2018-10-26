@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { File } from '@ionic-native/file';
 import { ImagePicker, ImagePickerOptions, OutputType } from '@ionic-native/image-picker';
 import { BusyIndicatorService } from './busy-indicator.service';
+import { SentryLoggerService } from './sentry-logger.service';
 
 @Injectable()
 export class ImagePickerService {
@@ -15,6 +16,7 @@ export class ImagePickerService {
     constructor(
         private file: File,
         private busyInd: BusyIndicatorService,
+        private sentry: SentryLoggerService,
         private imgPicker: ImagePicker) {
         this.imgPicker.hasReadPermission().then(result => {
             if (!result) this.imgPicker.requestReadPermission();
@@ -22,6 +24,7 @@ export class ImagePickerService {
     }
 
     pickOne(): Promise<string> {
+        this.options.maximumImagesCount = 1;
         return new Promise((resolve, reject) => {
             this.imgPicker.hasReadPermission().then(result => {
                 if (!result) this.imgPicker.requestReadPermission();
@@ -68,7 +71,7 @@ export class ImagePickerService {
     private resolveChain(urls: any): Promise<any> {
         return urls.reduce((previous: any, current: string, index: number, arr: any) => {
             return previous.then(accumulator => {
-                this.getDataUrl(current).then(currentDataURL => [...accumulator, currentDataURL]).catch(err => console.log(err))
+                this.getDataUrl(current).then(currentDataURL => [...accumulator, currentDataURL]).catch(err => this.sentry.log(err))
             });
         }, Promise.resolve([]));
     }

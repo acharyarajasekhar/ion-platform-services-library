@@ -1,4 +1,4 @@
-<div class="upload-black-overlay" [ngStyle]="{'background-color': bdColor}">
+<div class="upload-black-overlay" *ngIf="showUploadProgress" [ngStyle]="{'background-color': bdColor}">
     <div class="upload-content" [ngStyle]="{ 'background-color': bgColor, 'color': color }">
         <ion-icon [name]="icon"></ion-icon>
         <p> Uploading files ({{ current }}/{{ total

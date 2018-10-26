@@ -1,9 +1,3 @@
-/*!
- * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
- * Copyright 2015 Daniel Cardoso <@DanielCardoso>
- * Licensed under MIT
- */
-
  .la-ball-8bits,
  .la-ball-8bits>div {
      position: relative;
@@ -11684,8 +11678,8 @@
      transform: translate(-50%, -50%);
  }
  
- .busy-black-overlay>p {
-     top: calc(50% + 40px);
+ .busy-black-overlay>.loading-content>p {
+     top: calc(50% + 25px);
      left: 50%;
      margin: 0;
      position: absolute;
@@ -11694,3 +11688,18 @@
      font-weight: 100;
      font-size: 1.4rem;
  }
+
+ .loading-content {
+    font-size: 3em;
+    align-content: center;
+    text-align: center;
+    padding: 50px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+#spinningitem {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -20px;
+}

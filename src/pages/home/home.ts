@@ -25,9 +25,9 @@ export class HomePage {
 
   alert() {
     console.log("Clicked");
-    this.svc.attachAlert();
+    this.svc.networkAlertObservable.next(true);
     setTimeout(() => {
-      this.svc.detachAlert();
+      // this.svc.networkAlertObservable.next(false);
     }, 3000);
   }
 

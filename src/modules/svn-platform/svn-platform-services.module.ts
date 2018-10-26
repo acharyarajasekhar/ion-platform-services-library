@@ -15,7 +15,7 @@ import { ToastMessageService } from './services/toast-message.service';
 import { WindowService } from './services/window.service';
 import { IonBusyIndicatorComponent } from './components/ion-busy-indicator/ion-busy-indicator.component';
 import { DynamicDomInjectorService } from './services/dynamic-dom-injector.service';
-import { IonCriticalAlertComponent } from './components/ion-network-alert/ion-critical-alert.component';
+import { IonNetworkAlertComponent } from './components/ion-network-alert/ion-network-alert.component';
 import { NetworkConnectivityListener } from './listeners/network-connectivity.listener';
 import { Network } from '@ionic-native/network';
 import { IonUploadIndicatorComponent } from './components/ion-upload-indicator/ion-upload-indicator.component';
@@ -29,17 +29,17 @@ import { UploadIndicatorService } from './services/upload-indicator.service';
         ReactiveFormsModule
     ],
     declarations: [
-        IonCriticalAlertComponent,
+        IonNetworkAlertComponent,
         IonBusyIndicatorComponent,
         IonUploadIndicatorComponent
     ],
     entryComponents: [
-        IonCriticalAlertComponent,
+        IonNetworkAlertComponent,
         IonBusyIndicatorComponent,
         IonUploadIndicatorComponent
     ],
     exports: [
-        IonCriticalAlertComponent,
+        IonNetworkAlertComponent,
         IonBusyIndicatorComponent,
         IonUploadIndicatorComponent
     ],

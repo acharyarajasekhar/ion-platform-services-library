@@ -7,6 +7,7 @@ export class SentryLoggerService {
     constructor() { }
 
     log(message: string) {
+        console.log(message);
         Raven.captureMessage(message);
     }
 
