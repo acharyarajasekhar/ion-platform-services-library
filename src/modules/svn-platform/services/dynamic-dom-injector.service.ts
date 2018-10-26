@@ -15,7 +15,7 @@ export class DynamicDomInjectorService {
         private injector: Injector
     ) { }
 
-    attach(component: any, options: any) {
+    attach(component: any, options: any): any {
         // 1. Create a component reference from the component 
         const componentRef = this.componentFactoryResolver
             .resolveComponentFactory(component)
