@@ -1,6 +1,6 @@
 {
   "name": "@sri-vaikhanasa-network/ion-platform-services-library",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Acharya Raja Sekhar",
   "homepage": "https://github.com/acharyarajasekhar/ion-platform-services-library",
   "private": false,
@@ -13,7 +13,7 @@
     "rebuild:lib": "rd /s /q dist && ng-packagr",
     "publish": "npm publish dist --access public"
   },
-  "dependencies": {
+  "pependencies": {
     "@angular/animations": "5.2.11",
     "@angular/common": "5.2.11",
     "@angular/compiler": "5.2.11",
