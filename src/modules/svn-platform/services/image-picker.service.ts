@@ -52,28 +52,38 @@ export class ImagePickerService {
             this.imgPicker.hasReadPermission().then(result => {
                 if (!result) this.imgPicker.requestReadPermission();
                 else {
+                    this.busyInd.show();
                     this.imgPicker.getPictures(this.options).then(results => {
-                        this.busyInd.show();
-                        let l = results.length;
-                        let temp = [];
-                        for (let i = 0; i < l; i++) {
-                            let imageUrl = results[i];
-                            this.file.resolveLocalFilesystemUrl(imageUrl).then((fileEntry: any) => {
-                                fileEntry.file(file => {
-                                    var reader = new FileReader();
-                                    reader.onloadend = (evt: any) => {
-                                        temp.push(evt.target.result);
-                                        if (i == l - 1) {
-                                            resolve(temp);
-                                        }
-                                    };
-                                    reader.readAsDataURL(file);
-                                }, err => { this.busyInd.hide(); reject("Error while reading image file: " + JSON.stringify(err)); })
-                            }).catch(err => { this.busyInd.hide(); reject("Error while resolving image file url: " + JSON.stringify(err)) })
+                        if (results && results.length > 0) {
+                            this.resolveChain(results)
+                                .then(urls => { this.busyInd.hide(); resolve(urls) })
+                                .catch(err => { this.busyInd.hide(); reject(err) });
                         }
-                    }).catch(err => reject("Error while getting images: " + JSON.stringify(err)));
+                    }).catch(err => { this.busyInd.hide(); reject("Error while getting images: " + JSON.stringify(err)) });
                 }
             }).catch(err => reject("Error while checking imagepicker permission: " + JSON.stringify(err)));
+        });
+    }
+
+    private resolveChain(urls: []): Promise<any> {
+        return urls.reduce((previous: any, current: string, index: number, arr: any) => {
+            return previous.then(accumulator => {
+                this.getDataUrl(current).then(currentDataURL => [...accumulator, currentDataURL]).catch(err => console.log(err))
+            });
+        }, Promise.resolve([]));
+    }
+
+    private getDataUrl(imgUrl): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.file.resolveLocalFilesystemUrl(imgUrl).then((fileEntry: any) => {
+                fileEntry.file(file => {
+                    var reader = new FileReader();
+                    reader.onloadend = (evt: any) => {
+                        resolve(evt.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }, err => reject(err));
+            }).catch(err => reject(err));
         });
     }
 }
