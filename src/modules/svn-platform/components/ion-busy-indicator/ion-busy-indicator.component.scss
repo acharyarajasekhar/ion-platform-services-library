@@ -11667,7 +11667,7 @@
      }
  }
  
- .black-overlay {
+ .busy-black-overlay {
      position: fixed;
      top: 0;
      left: 0;
@@ -11676,7 +11676,7 @@
      z-index: 99999 !important;
  }
  
- .black-overlay>div {
+ .busy-black-overlay>div {
      top: 50%;
      left: 50%;
      margin: 0;
@@ -11684,7 +11684,7 @@
      transform: translate(-50%, -50%);
  }
  
- .black-overlay>p {
+ .busy-black-overlay>p {
      top: calc(50% + 40px);
      left: 50%;
      margin: 0;
@@ -11692,4 +11692,5 @@
      transform: translate(-50%, -50%);
      font-family: sans-serif;
      font-weight: 100;
+     font-size: 1.4rem;
  }

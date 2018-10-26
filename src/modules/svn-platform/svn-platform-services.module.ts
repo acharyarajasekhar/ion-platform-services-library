@@ -13,7 +13,13 @@ import { PhotoViewerService } from './services/photo-viewer.service';
 import { SentryLoggerService } from './services/sentry-logger.service';
 import { ToastMessageService } from './services/toast-message.service';
 import { WindowService } from './services/window.service';
-import { IonBusyIndicatorComponent } from './components/ion-busy-indicator.component';
+import { IonBusyIndicatorComponent } from './components/ion-busy-indicator/ion-busy-indicator.component';
+import { DynamicDomInjectorService } from './services/dynamic-dom-injector.service';
+import { IonCriticalAlertComponent } from './components/ion-network-alert/ion-critical-alert.component';
+import { NetworkConnectivityListener } from './listeners/network-connectivity.listener';
+import { Network } from '@ionic-native/network';
+import { IonUploadIndicatorComponent } from './components/ion-upload-indicator/ion-upload-indicator.component';
+import { UploadIndicatorService } from './services/upload-indicator.service';
 
 @NgModule({
     imports: [
@@ -23,21 +29,34 @@ import { IonBusyIndicatorComponent } from './components/ion-busy-indicator.compo
         ReactiveFormsModule
     ],
     declarations: [
-        IonBusyIndicatorComponent
+        IonCriticalAlertComponent,
+        IonBusyIndicatorComponent,
+        IonUploadIndicatorComponent
+    ],
+    entryComponents: [
+        IonCriticalAlertComponent,
+        IonBusyIndicatorComponent,
+        IonUploadIndicatorComponent
     ],
     exports: [
-        IonBusyIndicatorComponent
+        IonCriticalAlertComponent,
+        IonBusyIndicatorComponent,
+        IonUploadIndicatorComponent
     ],
     providers: [
         BackButtonEventHandler,
         BusyIndicatorService,
         CallNumberService,
         CameraService,
+        DynamicDomInjectorService,
         ImageCropperService,
         ImagePickerService,
+        Network,
+        NetworkConnectivityListener,
         PhotoViewerService,
         SentryLoggerService,
         ToastMessageService,
+        UploadIndicatorService,
         WindowService
     ]
 })
@@ -50,11 +69,15 @@ export class SvnPlatformServicesModule {
                 BusyIndicatorService,
                 CallNumberService,
                 CameraService,
+                DynamicDomInjectorService,
                 ImageCropperService,
                 ImagePickerService,
+                Network,
+                NetworkConnectivityListener,
                 PhotoViewerService,
                 SentryLoggerService,
                 ToastMessageService,
+                UploadIndicatorService,
                 WindowService
             ]
         };

@@ -17,14 +17,20 @@
 
   EDIT: The schemas declaration needs to be in a @NgModule decorator. The example below shows a custom module with a
   custom component CustomComponent which allows any html tag in the html template for that one component.
-  
+
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <ion-buttons end>
-      <button ion-button color="primary" (tap)="onClick($event)">
-        <ion-icon name="done-all"></ion-icon>&nbsp; Ok
+      <button ion-button color="primary" (tap)="alert($event)">
+        <ion-icon name="done-all"></ion-icon>&nbsp; Network
+      </button>
+      <button ion-button color="primary" (tap)="upload($event)">
+        <ion-icon name="done-all"></ion-icon>&nbsp; Upload
+      </button>
+      <button ion-button color="primary" (tap)="loading($event)">
+        <ion-icon name="done-all"></ion-icon>&nbsp; Loading
       </button>
     </ion-buttons>
   </ion-toolbar>

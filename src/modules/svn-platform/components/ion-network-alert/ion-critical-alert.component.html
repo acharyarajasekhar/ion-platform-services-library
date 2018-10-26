@@ -1,0 +1,6 @@
+<div class="alert-black-overlay" [ngStyle]="{'background-color': bdColor}">
+    <div class="alert-content" [style.color]="color">
+        <ion-icon [name]="icon"></ion-icon>
+        <p *ngIf="message" [style.color]="color" [innerHTML]="message"></p>
+    </div>
+</div>

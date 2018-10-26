@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { BusyIndicatorService } from '../../modules';
+import { NetworkConnectivityListener } from '../../modules/svn-platform/listeners/network-connectivity.listener';
+import { Events } from 'ionic-angular';
+import { IonUploadIndicatorComponent } from '../../modules/svn-platform/components/ion-upload-indicator/ion-upload-indicator.component';
+import { UploadIndicatorService } from '../../modules/svn-platform/services/upload-indicator.service';
 
 @Component({
   selector: 'page-home',
@@ -7,27 +11,51 @@ import { BusyIndicatorService } from '../../modules';
 })
 export class HomePage {
 
-  constructor(private spinnerSvc: BusyIndicatorService) { }
+  constructor(private svc: NetworkConnectivityListener, private uploadInd: UploadIndicatorService, private events: Events, private busy: BusyIndicatorService) { 
 
-  onClick() {
+    this.uploadInd.setUploadIndicatorOptions({
+      bdColor: "rgb(255,255,255, 0.9)",
+      color: "blue"
+    })
+
+  }
+
+  loading() {
     console.log("Clicked");
-    // let i = this.budyInd.show();
-    // setTimeout(() => {
-    //   this.budyInd.hide(i);
-    // }, 3000);
-    this.spinnerSvc.show();
+    this.busy.show();
     setTimeout(() => {
-      console.log('after 10000');
-      this.spinnerSvc.hide();
-    }, 10000);
+      this.busy.hide();
+    }, 3000);
+  }
+
+  alert() {
+    console.log("Clicked");
+    this.svc.attachAlert();
     setTimeout(() => {
-      console.log('after 2000');
-      this.spinnerSvc.show();
-      setTimeout(() => {
-        console.log('after 4000');
-        this.spinnerSvc.hide();
-      }, 2000);
-    }, 2000);
+      this.svc.detachAlert();
+    }, 3000);
+  }
+
+  progress: number = 0;
+  handle: any;
+
+  upload() {
+    this.progress = 0;
+    this.uploadInd.show();
+    this.handle = setInterval(() => { this.ticks(); this.progress += 10; }, 500);
+  }
+
+  ticks() {
+    console.log(this.progress);
+    this.events.publish('on-upload-status-update', {
+      current: 1,
+      total: 1,
+      progress: this.progress
+    })
+    if (this.progress === 100) {
+      this.uploadInd.hide();
+      clearInterval(this.handle);
+    }
   }
 
 }

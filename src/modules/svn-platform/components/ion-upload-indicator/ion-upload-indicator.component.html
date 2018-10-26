@@ -1,0 +1,12 @@
+<div class="upload-black-overlay" [ngStyle]="{'background-color': bdColor}">
+    <div class="upload-content" [style.color]="color">
+        <ion-icon [name]="icon"></ion-icon>
+        <p> Uploading files ({{ current }}/{{ total
+            }}) - {{ progress }}%
+        </p>
+        <div class="progress-outer" [ngStyle]="{ 'border-color': color }">
+            <div class="progress-inner" [style.width]="progress + '%'" [ngStyle]="{ 'background-color': color }">
+            </div>
+        </div>
+    </div>
+</div>

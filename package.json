@@ -29,6 +29,7 @@
     "@ionic-native/crop": "^4.16.0",
     "@ionic-native/file": "^4.16.0",
     "@ionic-native/image-picker": "^4.16.0",
+    "@ionic-native/network": "^4.16.0",
     "@ionic-native/photo-viewer": "^4.16.0",
     "@ionic-native/splash-screen": "~4.15.0",
     "@ionic-native/status-bar": "~4.15.0",

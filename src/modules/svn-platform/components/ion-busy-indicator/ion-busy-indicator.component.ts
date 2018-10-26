@@ -1,7 +1,6 @@
 import { Component, OnDestroy, Input, OnInit, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LOADERS } from './ion-busy-indicator.layout';
-import { BusyIndicatorService } from '../services/busy-indicator.service';
 
 const BUSY_INDICATOR_STYLES =
     `
@@ -11674,32 +11673,33 @@ const BUSY_INDICATOR_STYLES =
      }
  }
  
- .black-overlay {
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     z-index: 99999 !important;
- }
- 
- .black-overlay>div {
-     top: 50%;
-     left: 50%;
-     margin: 0;
-     position: absolute;
-     transform: translate(-50%, -50%);
- }
- 
- .black-overlay>p {
-     top: calc(50% + 40px);
-     left: 50%;
-     margin: 0;
-     position: absolute;
-     transform: translate(-50%, -50%);
-     font-family: sans-serif;
-     font-weight: 100;
- }`;
+ .busy-black-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999 !important;
+}
+
+.busy-black-overlay>div {
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.busy-black-overlay>p {
+    top: calc(50% + 40px);
+    left: 50%;
+    margin: 0;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 1.4rem;
+}`;
 
 @Component({
     selector: 'ion-busy-indicator',
@@ -11755,7 +11755,7 @@ export class IonBusyIndicatorComponent implements OnDestroy, OnInit, OnChanges {
      * @memberof NgxSpinnerComponent
      */
     get showSpinner() {
-        return this.SpinnerSubscriberCount != 0;
+        return true;
     };
 
     /**
@@ -11780,21 +11780,11 @@ export class IonBusyIndicatorComponent implements OnDestroy, OnInit, OnChanges {
     divCount = 0;
 
     /**
-     * Spinner subscriber count
-     */
-    SpinnerSubscriberCount: number = 0;
-
-    /**
      * Creates an instance of NgxSpinnerComponent.
      *
      * @memberof NgxSpinnerComponent
      */
-    constructor(private spinnerService: BusyIndicatorService) {
-        this.spinnerSubscription = this.spinnerService.spinnerObservable.subscribe(flag => {
-            flag ? this.SpinnerSubscriberCount++ : this.SpinnerSubscriberCount--;
-            if (this.SpinnerSubscriberCount < 0) this.SpinnerSubscriberCount = 0;
-        });
-    }
+    constructor() { }
 
     /**
      * Initialization method
@@ -11873,6 +11863,6 @@ export class IonBusyIndicatorComponent implements OnDestroy, OnInit, OnChanges {
      * @memberof NgxSpinnerComponent
      */
     ngOnDestroy() {
-        this.spinnerSubscription.unsubscribe();
+        
     }
 }

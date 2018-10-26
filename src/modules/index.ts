@@ -1,8 +1,8 @@
 export * from './svn-platform/svn-platform-services.module';
 
 export * from './svn-platform/handlers/sentry-error.handler';
-
 export * from './svn-platform/handlers/back-button.handler';
+
 export * from './svn-platform/services/busy-indicator.service';
 export * from './svn-platform/services/call-number.service';
 export * from './svn-platform/services/camera.service';
