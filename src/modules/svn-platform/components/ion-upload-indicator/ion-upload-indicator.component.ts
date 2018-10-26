@@ -8,10 +8,10 @@ import { Events } from 'ionic-angular';
 })
 export class IonUploadIndicatorComponent {
 
-    @Input() bdColor = 'rgba(51,51,51,0.8)';
+    @Input() bdColor = 'rgba(0,0,0,0.3)';
+    @Input() bgColor = 'rgb(89,40,177, 1)';
     @Input() color = '#fff';
     @Input() icon = "alert";
-    @Input() message = "Critical Message";
 
     current: number = 0;
     total: number = 0;

@@ -13,11 +13,6 @@ export class HomePage {
 
   constructor(private svc: NetworkConnectivityListener, private uploadInd: UploadIndicatorService, private events: Events, private busy: BusyIndicatorService) { 
 
-    this.uploadInd.setUploadIndicatorOptions({
-      bdColor: "rgb(255,255,255, 0.9)",
-      color: "blue"
-    })
-
   }
 
   loading() {

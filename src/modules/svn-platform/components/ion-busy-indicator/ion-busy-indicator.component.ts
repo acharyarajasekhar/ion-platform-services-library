@@ -14,7 +14,7 @@ export class IonBusyIndicatorComponent implements OnDestroy, OnInit, OnChanges {
        * Only supports RGBA color format
        * @memberof NgxSpinnerComponent
        */
-    @Input() bdColor = 'rgba(51,51,51,0.8)';
+    @Input() bdColor = 'rgba(0,0,0,0.3)';
 
     /**
      * To set spinner size

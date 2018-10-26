@@ -12,9 +12,10 @@ export class UploadIndicatorService {
     uploadObservable = new Subject<boolean>();
 
     uploadIndicatorOptions = {
-        bdColor: "rgba(0, 0, 0, 0.5)",
+        bdColor: "rgba(0, 0, 0, 0.3)",
         color: "#fff",
-        icon: "ios-cloud-upload-outline"
+        icon: "ios-cloud-upload-outline",
+        bgColor: 'rgb(89,40,177, 1)'
     };
 
     constructor(

@@ -14,10 +14,11 @@ export class NetworkConnectivityListener {
     networkObservable = new Subject<boolean>();
 
     criticalAlertOptions = {
-        bdColor: "rgba(0, 0, 0, 0.5)",
+        bdColor: "rgba(0, 0, 0, 0.3)",
+        bgColor: 'rgb(89,40,177, 1)',
         color: "#fff",
         icon: "alert",
-        message: "Netowrk Down<br/><br/>Please check your internet connectivity..."
+        message: "No Internet Connection"
     };
 
     constructor(
@@ -41,11 +42,14 @@ export class NetworkConnectivityListener {
         this.networkObservable.subscribe(isAvailable => {
             if (!isAvailable) {
                 if (!this.componentRef) {
-                    this.attachAlert();
+                    this.backButtonHandle = this.backButtonHandler.disableEvent();
+                    this.componentRef = this.dynamicDomInjector.attach(IonCriticalAlertComponent, this.criticalAlertOptions);
                 }
             } else {
                 if (this.componentRef) {
-                    this.detachAlert();
+                    this.backButtonHandle();
+                    this.dynamicDomInjector.detach(this.componentRef);
+                    this.componentRef = undefined;
                 }
             }
         });

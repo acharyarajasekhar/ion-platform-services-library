@@ -13,9 +13,9 @@ export class BusyIndicatorService {
   subscriberCount: number = 0;
 
   busyIndicatorOptions = {
-    bdColor: "rgba(0, 0, 0, 0.5)",
+    bdColor: 'rgba(255,255,255,0.7)',
     size: "default",
-    color: "#fff",
+    color: 'rgb(89,40,177, 1)',
     type: "timer",
     loadingText: "Please Wait"
   };
