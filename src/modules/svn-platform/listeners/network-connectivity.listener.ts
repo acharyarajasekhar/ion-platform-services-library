@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { Network } from '@ionic-native/network';
+import { Network, Connection } from '@ionic-native/network';
 import { Subject } from 'rxjs/Subject';
 import { BackButtonEventHandler } from '../handlers/back-button.handler';
 
@@ -25,8 +25,8 @@ export class NetworkConnectivityListener {
         })
 
         switch (this.network.type) {
-            case this.network.Connection.NONE:
-            case this.network.Connection.UNKNOWN:
+            case 'unknown':
+            case 'none':
                 this.backButtonHandle = this.backButtonHandler.disableEvent();
                 this.networkAlertObservable.next(true);
                 break;
@@ -35,7 +35,7 @@ export class NetworkConnectivityListener {
                 this.networkAlertObservable.next(false);
                 break;
         }
-        
+
     }
 
 }
