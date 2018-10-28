@@ -15,8 +15,6 @@ import { ToastMessageService } from './services/toast-message.service';
 import { WindowService } from './services/window.service';
 import { IonBusyIndicatorComponent } from './components/ion-busy-indicator/ion-busy-indicator.component';
 import { DynamicDomInjectorService } from './services/dynamic-dom-injector.service';
-import { IonNetworkAlertComponent } from './components/ion-network-alert/ion-network-alert.component';
-import { NetworkConnectivityListener } from './listeners/network-connectivity.listener';
 import { Network } from '@ionic-native/network';
 import { IonUploadIndicatorComponent } from './components/ion-upload-indicator/ion-upload-indicator.component';
 import { UploadIndicatorService } from './services/upload-indicator.service';
@@ -29,17 +27,14 @@ import { UploadIndicatorService } from './services/upload-indicator.service';
         ReactiveFormsModule
     ],
     declarations: [
-        IonNetworkAlertComponent,
         IonBusyIndicatorComponent,
         IonUploadIndicatorComponent
     ],
     entryComponents: [
-        IonNetworkAlertComponent,
         IonBusyIndicatorComponent,
         IonUploadIndicatorComponent
     ],
     exports: [
-        IonNetworkAlertComponent,
         IonBusyIndicatorComponent,
         IonUploadIndicatorComponent
     ],
@@ -52,7 +47,6 @@ import { UploadIndicatorService } from './services/upload-indicator.service';
         ImageCropperService,
         ImagePickerService,
         Network,
-        NetworkConnectivityListener,
         PhotoViewerService,
         SentryLoggerService,
         ToastMessageService,
@@ -73,7 +67,6 @@ export class SvnPlatformServicesModule {
                 ImageCropperService,
                 ImagePickerService,
                 Network,
-                NetworkConnectivityListener,
                 PhotoViewerService,
                 SentryLoggerService,
                 ToastMessageService,
